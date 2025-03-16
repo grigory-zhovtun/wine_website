@@ -6,7 +6,6 @@ This module performs the following actions:
 2. Writes the generated page to the file index.html.
 3. Starts an HTTP server to serve the generated page.
 """
-
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
