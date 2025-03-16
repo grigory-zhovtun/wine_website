@@ -3,6 +3,21 @@ import os
 
 
 def get_wines_data():
+    """Get actual data about wines
+
+    This function get data about wines from .xlsx file and returns it
+    as a list of dictionaries
+
+    Returns:
+        list: list of wines. Contains:
+            [category: [{
+                'name': name of drink,
+                'grape_variety': grape variety (for wine),
+                'price': price,
+                'image': image for website,
+                'promotion: special price for some product'
+                }]
+    """
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, '..', 'product_data', 'wine3.xlsx')
 
