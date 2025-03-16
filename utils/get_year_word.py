@@ -1,18 +1,22 @@
-def get_year_word(n: int) -> str:
-    """Returns the correct Russian word for "year" based on the given number.
+"""Module for determining the correct Russian word 'year' based on a number."""
 
-    The function determines the appropriate form of the word "год" (year) in Russian
+
+def get_year_word(n: int) -> str:
+    """
+    Return the correct Russian word for 'year' based on the given number.
+
+    The function determines the appropriate form of the word 'год' in Russian
     based on the number `n`. It follows Russian grammatical rules:
 
-    - "год" for numbers ending in 1 (except 11)
-    - "года" for numbers ending in 2, 3, or 4 (except 12, 13, 14)
-    - "лет" for all other cases
+    - 'год' for numbers ending in 1 (except 11)
+    - 'года' for numbers ending in 2, 3, or 4 (except 12, 13, 14)
+    - 'лет' for all other cases
 
     Args:
         n (int): The number of years.
 
     Returns:
-        str: A string containing the number and the correct word for "year" in Russian.
+        str: A string containing the number and the correct word 'year'.
 
     Examples:
         >>> get_year_word(1)
@@ -34,7 +38,6 @@ def get_year_word(n: int) -> str:
     last_digit = n % 10
     if last_digit == 1:
         return f"{n} год"
-    elif 2 <= last_digit <= 4:
+    if 2 <= last_digit <= 4:
         return f"{n} года"
-    else:
-        return f"{n} лет"
+    return f"{n} лет"
