@@ -62,10 +62,8 @@ This will:
 - Start an HTTP server to serve the page.
 
 You can then access the web page at:
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-```
-http://127.0.0.1:8000
-```
 
 ### Updating Wine Data
 
