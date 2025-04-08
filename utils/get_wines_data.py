@@ -1,6 +1,8 @@
 """Module for retrieving and processing wine data from an Excel file."""
 import os
 import pandas as pd
+import argparse
+from dotenv import load_dotenv
 
 
 def get_wines_data():
@@ -28,10 +30,22 @@ def get_wines_data():
             }
         ]
     """
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base_dir, '..', 'product_data', 'wine3.xlsx')
+    load_dotenv()
 
-    wines_data = pd.read_excel(file_path)
+    excel_file_path = os.environ.get("EXCEL_FILE_PATH")
+    if not excel_file_path:
+        raise ValueError("EXCEL_FILE_PATH must be provided in the environment variables.")
+
+    parser = argparse.ArgumentParser(description="Get wine data from an Excel file")
+    parser.add_argument(
+        "--path_to_excel_file",
+        type=str,
+        default=excel_file_path,
+        help="Path to excel file with wine data.",
+    )
+    args = parser.parse_args()
+
+    wines_data = pd.read_excel(args.path_to_excel_file)
     wines_data = wines_data.fillna('')
     wines_data.columns = [
         'category', 'name', 'grape_variety', 'price', 'image', 'promotion'
