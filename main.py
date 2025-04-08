@@ -6,6 +6,7 @@ This module performs the following actions:
 2. Write the generated page to the file index.html.
 3. Start an HTTP server to serve the generated page.
 """
+from datetime import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -28,7 +29,7 @@ def render_template() -> None:
 
     wines = get_wines_data()
     rendered_page = template.render(
-        years="103",
+        years=datetime.today().year - 1920,
         wines=wines,
     )
 
