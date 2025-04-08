@@ -15,20 +15,7 @@ def get_wines_data():
 
     Returns:
         list: A list of dictionaries where each dictionary represents
-        a wine category and its associated wines in the following format:
-        [
-            {
-                "Category Name": [
-                    {
-                        "name": "Wine Name",
-                        "grape_variety": "Grape Variety",
-                        "price": "Price",
-                        "image": "Image Filename",
-                        "promotion": "Special Price"
-                    }
-                ]
-            }
-        ]
+        a wine category and its associated wines
     """
     load_dotenv()
 
