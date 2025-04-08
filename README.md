@@ -47,6 +47,15 @@ This Python project generates a dynamic web page displaying categorized wine dat
 
 ---
 
+## Environment Variables Setup
+
+The application uses the following environment variables:
+
+•	**EXCEL_FILE_PATH**: Path to excel file with wines data.
+
+Make sure to create a .env file in the project root and define these variables accordingly before running the program.
+---
+
 ## Usage
 
 ### Running the Web Server
