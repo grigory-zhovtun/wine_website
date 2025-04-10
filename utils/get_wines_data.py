@@ -5,7 +5,7 @@ import argparse
 from dotenv import load_dotenv
 
 
-def get_wines_data():
+def get_wines_data(excel_file_path):
     """
     Retrieve wine data from an Excel file and structure it by category.
 
@@ -17,12 +17,6 @@ def get_wines_data():
         list: A list of dictionaries where each dictionary represents
         a wine category and its associated wines
     """
-    load_dotenv()
-
-    excel_file_path = os.environ.get("EXCEL_FILE_PATH")
-    if not excel_file_path:
-        raise ValueError("EXCEL_FILE_PATH must be provided in the environment variables.")
-
     parser = argparse.ArgumentParser(description="Get wine data from an Excel file")
     parser.add_argument(
         "--path_to_excel_file",
@@ -47,3 +41,19 @@ def get_wines_data():
     }
 
     return sorted_wines_data_transformed
+
+
+def main():
+    load_dotenv()
+
+    excel_file_path = os.environ.get("EXCEL_FILE_PATH")
+    if not excel_file_path:
+        raise ValueError("EXCEL_FILE_PATH must be provided in the environment variables.")
+
+    wines_data = get_wines_data(excel_file_path)
+
+    return wines_data
+
+
+if __name__ == "__main__":
+    main()
