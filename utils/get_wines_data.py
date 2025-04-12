@@ -1,11 +1,9 @@
 """Module for retrieving and processing wine data from an Excel file."""
-import os
 import pandas as pd
 import argparse
-from dotenv import load_dotenv
 
 
-def get_wines_data():
+def get_wines_data(excel_file_path):
     """
     Retrieve wine data from an Excel file and structure it by category.
 
@@ -13,16 +11,13 @@ def get_wines_data():
     and returns the data as a dictionary where wines are grouped by
     their categories.
 
+    Args:
+        excel_file_path: Path to the `.xlsx` file.
+
     Returns:
         list: A list of dictionaries where each dictionary represents
         a wine category and its associated wines
     """
-    load_dotenv()
-
-    excel_file_path = os.environ.get("EXCEL_FILE_PATH")
-    if not excel_file_path:
-        raise ValueError("EXCEL_FILE_PATH must be provided in the environment variables.")
-
     parser = argparse.ArgumentParser(description="Get wine data from an Excel file")
     parser.add_argument(
         "--path_to_excel_file",

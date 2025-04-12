@@ -6,6 +6,8 @@ This module performs the following actions:
 2. Write the generated page to the file index.html.
 3. Start an HTTP server to serve the generated page.
 """
+from dotenv import load_dotenv
+import os
 from datetime import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -59,6 +61,11 @@ def main() -> None:
     2. Write the result to the file index.html.
     3. Start the HTTP server to serve the generated page.
     """
+    load_dotenv()
+    excel_file_path = os.environ.get("EXCEL_FILE_PATH")
+    if not excel_file_path:
+        raise ValueError("EXCEL_FILE_PATH must be provided in the environment variables.")
+
     render_template()
     run_server()
 
