@@ -8,6 +8,7 @@ This module performs the following actions:
 """
 from dotenv import load_dotenv
 import os
+import argparse
 from datetime import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -15,7 +16,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from utils.get_wines_data import get_wines_data
 
 
-def render_template() -> None:
+def render_template(excel_file_path) -> None:
     """
     Render an HTML template with wine data and write it to the file index.html.
 
@@ -29,7 +30,7 @@ def render_template() -> None:
     )
     template = env.get_template('template.html')
 
-    wines = get_wines_data()
+    wines = get_wines_data(excel_file_path)
     rendered_page = template.render(
         years=datetime.today().year - 1920,
         wines=wines,
@@ -66,7 +67,16 @@ def main() -> None:
     if not excel_file_path:
         raise ValueError("EXCEL_FILE_PATH must be provided in the environment variables.")
 
-    render_template()
+    parser = argparse.ArgumentParser(description="Get wine data from an Excel file")
+    parser.add_argument(
+        "--path_to_excel_file",
+        type=str,
+        default=excel_file_path,
+        help="Path to excel file with wine data.",
+    )
+    args = parser.parse_args()
+
+    render_template(args.path_to_excel_file)
     run_server()
 
 
